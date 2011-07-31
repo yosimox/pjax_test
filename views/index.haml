@@ -1,0 +1,46 @@
+!!! 5
+%html
+  %head
+    %title= @data[:title]
+    %meta{'http-equiv' => 'content', :content => 'text/html; charset=utf-8'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => 'css/common.css'}
+    / [if lt IE 9] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]
+    %script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
+    :javascript
+      google.load("jquery", "1.4");
+    %script{ :type => "text/javascript", :src => "js/jquery.pjax.js" }
+    :javascript
+      $(function() {
+        if(window.history.pushState){
+          console.log("ari");
+        }else{
+          console.log("nashi");
+         }
+        $('a.js-pjax').pjax('#main');
+        }
+      );
+
+  %body
+    %div#wrapper
+      %header
+        %hgroup
+          %h1 H1 text
+          %h2
+            %a{:href => "/"} h2 text
+      %nav
+        %ul
+          - (2..5).each do |i|
+            %li
+              %a.js-pjax{:href => ":data#{i}"} navi #{i}
+      %article#main= @data[:section]
+      %div#left_box
+        %h3 right nav
+        %div
+          - 50.times do |i|
+            right 
+        - 3.times do |i|
+          %img{:src => "images/sample_bnr_off.gif", :alt=>"gazo"}
+      %footer
+        %div#copyright Copyright 2011 
+        %div#pagetop
+          %img{:src => "images/pagetop_off.gif", :alt=>"pagetop"}
