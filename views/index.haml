@@ -11,14 +11,10 @@
     %script{ :type => "text/javascript", :src => "js/jquery.pjax.js" }
     :javascript
       $(function() {
-        if(window.history.pushState){
-          console.log("ari");
-        }else{
-          console.log("nashi");
-         }
         $('a.js-pjax').pjax('#main');
         }
       );
+    %script{ :type => "text/javascript", :src => "js/common.js" }
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-18122361-2']);

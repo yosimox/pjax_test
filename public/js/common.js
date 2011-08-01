@@ -1,20 +1,16 @@
-$(function() {
-  $(':checkbox').attr('checked', $.cookie('pjax'))
-
-  if ( !$(':checkbox').attr('checked') )
-    $.fn.pjax = $.noop
-
-  $(':checkbox').change(function() {
-    if ( !$.support.pjax ) {
-      $(this).removeAttr('checked')
-      return alert( "Sorry, your browser doesn't support pjax :(" )
-    }
-
-    if ( $(this).attr('checked') )
-      $.cookie('pjax', true)
-    else
-      $.cookie('pjax', null)
-
-    window.location = location.href
-  })
+$(function(){
+    $("a").live("click", function(e){
+        var linkUrl =  $(this).attr("href");
+        var internalDomain = location.host;
+        //console.log(linkUrl);
+        if((linkUrl.match(/^https?/))&&(!linkUrl.match(internalDomain))){
+        var evData = {
+            "category" : "outerLink",
+            "action" : document.URL,
+            "label" : linkUrl
+            }
+           _gaq.push(['_trackEvent', evData.category, evData.action, evData.label]);
+         }
+    });
 });
+
